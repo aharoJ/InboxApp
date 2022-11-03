@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Inbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .container {
+        display: grid;
+
+        grid-template-areas:
+          "header header header"
+          "nav content content"
+          "footer footer footer";
+
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-gap: 10px;
+
+        height: 100vh;
+      }
+      header {
+        grid-area: header;
+      }
+
+      nav {
+        grid-area: nav;
+        margin-left: 0.5rem;
+      }
+
+      main {
+        grid-area: content;
+      }
+
+      footer {
+        grid-area: footer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Welcome, Name</h1>
+      </header>
+
+
+
+
+
+
+  <nav>
+    <div class="card">
+          <div class="card-header">defaultFolders</div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li
+                th:each="folder : ${defaultFolders}"
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                TMP
+                <span th:text="${folder.label}"> Label</span>
+                <span class="badge bg-primary rounded-pill">69</span>
+              </li>
+            </ul>
+    </div>
+
+        <div class="card"
+             th:if="${userFolders}">
+              <div class="card-header">userFolders</div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li
+                    th:each="folder : ${defaultFolders}"
+                    class="list-group-item d-flex justify-content-between align-items-center"
+                  >
+                    TMP
+                    <span th:text="${folder.label}"> Label</span>
+                    <span class="badge bg-primary rounded-pill">24</span>
+                  </li>
+                </ul>    
+    </div>
+  </nav>
+
+
+
+      <main>
+        <div class="card">
+          <div class="card-header">Inbox</div>
+          <div class="card-body">
+            <div class="list-group">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action active"
+                aria-current="true"
+              >
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">LIST GROUP</h5>
+                  <small></small>
+                </div>
+                <p class="mb-1"></p>
+                <small></small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">LIST GROUP</h5>
+                  <small class="text-muted"></small>
+                </div>
+                <p class="mb-1"></p>
+                <small class="text-muted"></small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">LIST GROUP</h5>
+                  <small class="text-muted"></small>
+                </div>
+                <p class="mb-1"></p>
+                <small class="text-muted"></small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <!-- Footer content -->
+      </footer>
+    </div>
+  </body>
+</html>
