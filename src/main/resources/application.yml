@@ -22,13 +22,22 @@ spring:
         connect-timeout: 10s
         init-query-timeout: 10s
 
-astra:
+
+
   db:
     id: f1743fa3-737e-4cea-b973-186328cca962-1
     region: us-east1
     keyspace: main
     application:
       token: AstraCS:ZDBmBEClugfcZpEDnudZnQfv:05fdeffbbd011e5bdd3938e0db9170f4d73fc26049b2cf7809fe31667dc345f3
+
+server:
+    error:
+        whitelabel:
+            enabled: false
+
+
+
 
 
 datastax.astra:

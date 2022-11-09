@@ -14,6 +14,7 @@ import java.nio.file.Path;
 
 @SpringBootApplication
 @RestController
+
 public class InboxApp
 {
 	@Autowired 
@@ -45,9 +46,6 @@ public class InboxApp
 		folderRepository.save( new Folder("aharo","Important", "yellow "));
 
 	}
-
-
-
 
 	// @RequestMapping("/user")
 	// public String user(@AuthenticationPrincipal OAuth2User principal) {

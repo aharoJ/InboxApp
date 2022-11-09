@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class InboxController
     @Autowired private FolderService folderService;
 
     @GetMapping(value = "/")
-    @RequestMapping("/")
+    //@RequestMapping("/")
     public String homePage(
             @AuthenticationPrincipal OAuth2User principal,
             Model model     // use model for templating/access;
@@ -45,10 +44,9 @@ public class InboxController
 
 
         // I added these code to see if it fixes defaultFolders
-        model.addAttribute("defaultFolders", defaulFolders);
-        if (userFolders.size() > 0) {
-            model.addAttribute("userFolders", userFolders);
-        }
+            // if (userFolders.size() > 0) {
+            //     model.addAttribute("userFolders", userFolders);
+            // }
 
         return "inbox-page";
     }
