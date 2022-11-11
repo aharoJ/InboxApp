@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class FolderService 
 {
-    public List<Folder> fetchDefaultFolders(String userId)
+    public List<Folder> fetchDefaultFolders(String id)
     {
         return Arrays.asList
         (
-            new Folder(userId, "Inbox", "white"),
-            new Folder(userId, "Sent Items", "green"),
-            new Folder(userId, "Important", "red")  
+            new Folder(id, "Inbox", "white"),
+            new Folder(id, "Sent Items", "green"),
+            new Folder(id, "Important", "red")  
         );
         
     }

@@ -1,5 +1,8 @@
 package io.aharo.inbox;
 
+import io.aharo.inbox.emaillist.EmailListItem;
+import io.aharo.inbox.emaillist.EmailListItemKey;
+import io.aharo.inbox.emaillist.EmailListItemRepository;
 import io.aharo.inbox.folders.Folder;
 import io.aharo.inbox.folders.FolderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,22 +12,25 @@ import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomi
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
+
 import javax.annotation.PostConstruct;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 @SpringBootApplication
 @RestController
-
 public class InboxApp
 {
 	@Autowired 
 	private FolderRepository folderRepository;
+	
+	@Autowired
+	private EmailListItemRepository emailListItemRepository;
+ 
 
 	public static void main(String[] args) {
 		SpringApplication.run(InboxApp.class, args);
-
-		// System.out.println(folderRepository);
-		// FolderRepository fr = new FolderRepository("aharo", "idk", "red");
 	}
 
 	/**
@@ -41,17 +47,27 @@ public class InboxApp
 	@PostConstruct
 	public void init()
 	{
-		folderRepository.save( new Folder("aharo","Inbox", "blue"));
+		folderRepository.save( new Folder("aharo","Inbox", "blue"));				// this is how we see data  <--> make the paths 
 		folderRepository.save( new Folder("aharo","Sent", "green"));
 		folderRepository.save( new Folder("aharo","Important", "yellow "));
 
+		for (int i=0; i < 10; ++ i)
+		{
+			EmailListItemKey key = new EmailListItemKey();
+			key.setId("aharo");
+			key.setLabel("Inbox");
+			key.setTimeUuid(Uuids.timeBased());													// use api for time 
+
+			EmailListItem item = new EmailListItem();
+			item.setKey(key);
+			item.setTo(Arrays.asList("aharo"));
+			item.setSubject("Subject" + i);
+			item.setUnread(true);
+
+			emailListItemRepository.save(item);
+		}
 	}
 
-	// @RequestMapping("/user")
-	// public String user(@AuthenticationPrincipal OAuth2User principal) {
-	// 	System.out.println(principal);
-	// 	return principal.getAttribute("name");
-	// }
-	
-
 }
+
+  

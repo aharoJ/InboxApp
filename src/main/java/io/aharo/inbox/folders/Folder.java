@@ -11,10 +11,10 @@ import org.springframework.data.cassandra.core.mapping.CassandraType.Name;
 public class Folder 
 {
     @PrimaryKeyColumn(name = "user_id", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
-    private String id;
+    private String id; 
     
     @PrimaryKeyColumn(name = "label", ordinal = 1, type = PrimaryKeyType.CLUSTERED)
-    private String label; // one to many relation
+    private String label; // one to many relation 
     
     @CassandraType(type = Name.TEXT)
     private String color;
@@ -51,6 +51,14 @@ public class Folder
         this.color = color;
     }
 
+    
+
+    
+    
+
+    
+
+    
     
 
     

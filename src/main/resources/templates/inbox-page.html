@@ -65,33 +65,35 @@
     <div th:insert="components/folder-list :: folder-list (panelName = 'My folders', folders = ${userFolders})" ></div>
   </nav>
 
-
-
   <main>
-    <div class="card">
-      <div class="card-header">Inbox</div>
+    <!-- remove th: for it to work -->
+    <div class="card" th:if="${emailList}">
+      <div class="card-header">Inboxx</div>
       <div class="card-body">
         <div class="list-group">
-          <a
-                  href="#"
-                  class="list-group-item list-group-item-action active"
-                  aria-current="true"
-          >
+          <!-- remove th: for it work -->
+          <a th:each="message : ${emailList}"
+             href="#" class="list-group-item list-group-item-action" >
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">LIST GROUP</h5>
-              <small></small>
+              <!-- remove th: for it work -->
+              <h5 class="mb-1" th:text="${message.subject}">List group item heading</h5>
+              <small>3 days ago</small>
             </div>
-            <p class="mb-1"></p>
-            <small></small>
+                          <!-- remove th: for it work -->
+
+            <p class="mb-1" th:text="${message.to}">Some placeholder content in a paragraph.</p>
           </a>
+
         </div>
       </div>
-    </div>
+      
   </main>
 
-  <footer>
+
+    <footer>
     <!-- Footer content -->
-  </footer>
-</div>
+
+    </footer>
+  </div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package io.aharo.inbox.controllers;
 
+import io.aharo.inbox.emaillist.EmailListItem;
+import io.aharo.inbox.emaillist.EmailListItemRepository;
 import io.aharo.inbox.folders.Folder;
 import io.aharo.inbox.folders.FolderRepository;
 import io.aharo.inbox.folders.FolderService;
@@ -19,6 +21,7 @@ public class InboxController
 {
     @Autowired private FolderRepository folderRepository;
     @Autowired private FolderService folderService;
+    @Autowired private EmailListItemRepository emailListItemRepository;
 
     @GetMapping(value = "/")
     //@RequestMapping("/")
@@ -28,25 +31,29 @@ public class InboxController
 
     ) {
 
-        if (principal == null || !StringUtils.hasText(principal.getAttribute("login")) )
+        if (principal == null || !StringUtils .hasText(principal.getAttribute("login")) )
         {
             return "index";
         }
 
-
-        String loginId = principal.getAttribute("login");
+        /*
+         * Fetch the folders
+         */
+        String userId = principal.getAttribute("login");
        
-        List<Folder> userFolders = folderRepository.findAllById(loginId);
+        List<Folder> userFolders = folderRepository.findAllById(userId);
         model.addAttribute("userFolders", userFolders);
 
-        List<Folder> defaulFolders = folderService.fetchDefaultFolders(loginId);
+        List<Folder> defaulFolders = folderService.fetchDefaultFolders(userId);
         model.addAttribute("defaultFolders", defaulFolders);
 
-
-        // I added these code to see if it fixes defaultFolders
-            // if (userFolders.size() > 0) {
-            //     model.addAttribute("userFolders", userFolders);
-            // }
+        /*
+         * fetch messages
+         */
+        String folderlabel = "Inbox";
+        List<EmailListItem> emailList = emailListItemRepository
+            .findAllByKey_IdAndKey_Label(userId, folderlabel);
+        model.addAttribute("emailList", emailList);
 
         return "inbox-page";
     }
