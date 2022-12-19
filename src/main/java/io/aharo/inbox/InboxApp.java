@@ -1,5 +1,6 @@
 package io.aharo.inbox;
 
+
 import io.aharo.inbox.emaillist.EmailListItem;
 import io.aharo.inbox.emaillist.EmailListItemKey;
 import io.aharo.inbox.emaillist.EmailListItemRepository;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.session.HeaderWebSessionIdResolver;
 
 import com.datastax.oss.driver.api.core.uuid.Uuids;
 
@@ -50,7 +52,7 @@ public class InboxApp
 		folderRepository.save( new Folder("aharo","Inbox", "blue"));				// this is how we see data  <--> make the paths 
 		folderRepository.save( new Folder("aharo","Sent", "green"));
 		folderRepository.save( new Folder("aharo","Important", "yellow "));
-
+//issue here
 		for (int i=0; i < 10; ++ i)
 		{
 			EmailListItemKey key = new EmailListItemKey();

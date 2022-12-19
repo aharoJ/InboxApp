@@ -66,33 +66,44 @@
   </nav>
 
   <main>
-    <!-- remove th: for it to work -->
-    <div class="card" th:if="${emailList}">
-      <div class="card-header">Inboxx</div>
+
+    <!-- <div class="card" th:if="${emailList}">
+      <div class="card-header" >Inboxx</div>
       <div class="card-body">
         <div class="list-group">
-          <!-- remove th: for it work -->
           <a th:each="message : ${emailList}"
-             href="#" class="list-group-item list-group-item-action" >
+             href="#" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
-              <!-- remove th: for it work -->
               <h5 class="mb-1" th:text="${message.subject}">List group item heading</h5>
-              <small>3 days ago</small>
+              <small th:text="${message.agoTimeString}">3 days ago</small>
             </div>
-                          <!-- remove th: for it work -->
-
             <p class="mb-1" th:text="${message.to}">Some placeholder content in a paragraph.</p>
           </a>
-
+  
         </div>
-      </div>
-      
-  </main>
+    </div> -->
 
+
+
+    <div class="card" th:if="${emailList}">
+      <div class="card-header" >Inboxx Tester</div>
+      <div class="card-body">
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action" >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"> message from @aharo</h5>
+          <small>9 ahours ago </small>
+        </div>
+        <p class="mb-1"> How is life going? </p>
+        <small>And some small print.</small>
+      </a>
+    </div>
+
+
+  </main>
 
     <footer>
     <!-- Footer content -->
-
     </footer>
   </div>
 </body>

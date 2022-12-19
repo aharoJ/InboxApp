@@ -22,13 +22,13 @@ public class EmailListItemKey
 
     
 
-    public EmailListItemKey(String id, String label, UUID timeUuid) {
-        this.id = id;
-        this.label = label;
-        this.timeUuid = timeUuid;
-    }
+    // public EmailListItemKey(String id, String label, UUID timeUuid) {
+    //     this.id = id;
+    //     this.label = label;
+    //     this.timeUuid = timeUuid;
+    // }
 
-    public EmailListItemKey(){}
+    // public EmailListItemKey(){}
 
     public String getId() {
         return id;

@@ -11,3 +11,4 @@ public interface EmailListItemRepository extends CassandraRepository<EmailListIt
     //List<EmailListItem> findAllById(EmailListItemKey id);   // EmailListItemKey --> key we need to fetch <:?:> EmailListItem --> what we get back    
     List<EmailListItem> findAllByKey_IdAndKey_Label(String id, String label);       // we dont want to map uuid soo we are updating the two paramerts we want
 }
+ 
